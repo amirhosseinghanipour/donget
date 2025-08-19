@@ -272,17 +272,20 @@ class ProfilePage extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 80, bottom: 32.68, left: 65.12, right:65.12),
                           child: SizedBox(
                             child: CustomPaint(
-                              painter: GaugeChartPainter(),
+                              painter: GaugeChartPainter(
+                                defiPercentage: 36,
+                                ethereumPercentage: 64,
+                              ),
                               child: Center(
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
-                                  children: const [
-                                    Text("64% Ethereum",
+                                  children: [
+                                    Text("${ethereumPercentage.toInt()}% Ethereum",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white)),
                                     SizedBox(height: 6),
-                                    Text("36% DeFi",
+                                    Text("${defiPercentage.toInt()}% DeFi",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white)),
@@ -458,6 +461,14 @@ class _NavMainButton extends StatelessWidget {
 }
 
 class GaugeChartPainter extends CustomPainter {
+  final double defiPercentage;
+  final double ethereumPercentage;
+  
+  GaugeChartPainter({
+    required this.defiPercentage,
+    required this.ethereumPercentage,
+  });
+
   @override
   void paint(Canvas canvas, Size size) {
     final strokeWidth = 20.0;
@@ -487,7 +498,7 @@ class GaugeChartPainter extends CustomPainter {
     canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
         math.pi,
-        math.pi * 0.36,
+        math.pi * (defiPercentage / 100),
         false,
         defiPaint);
 
@@ -499,8 +510,8 @@ class GaugeChartPainter extends CustomPainter {
 
     canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
-        math.pi + math.pi * 0.36,
-        math.pi * 0.64,
+        math.pi + math.pi * (defiPercentage / 100),
+        math.pi * (ethereumPercentage / 100),
         false,
         ethPaint);
   }
