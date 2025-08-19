@@ -237,16 +237,16 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 16),
 
                   // change password
                   _buildMenuItem(Icons.lock_outline, "Change Password"),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 14),
 
                   // sign out
                   _buildMenuItem(Icons.logout, "Sign Out"),
 
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 16),
 
                   // gauge chart
                   Container(
@@ -255,33 +255,39 @@ class ProfilePage extends StatelessWidget {
                       color: const Color(0xFF262E45),
                       borderRadius: BorderRadius.circular(16),
                     ),
-                    padding: const EdgeInsets.all(20),
+                    padding: EdgeInsets.zero,
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text("Defi to Ethereum Ratio",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 16)),
-                        const SizedBox(height: 100),
+                        Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: const Text("Defi to Ethereum Ratio",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700, fontSize: 16)),
+                        ),
+                        const SizedBox(height: 36),
 
-                        SizedBox(
-                          height: 200,
-                          child: CustomPaint(
-                            painter: GaugeChartPainter(),
-                            child: Center(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Text("64% Ethereum",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                  SizedBox(height: 6),
-                                  Text("36% DeFi",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white)),
-                                ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 80, bottom: 32.68, left: 65.12, right:65.12),
+                          child: SizedBox(
+                            child: CustomPaint(
+                              painter: GaugeChartPainter(),
+                              child: Center(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: const [
+                                    Text("64% Ethereum",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
+                                    SizedBox(height: 6),
+                                    Text("36% DeFi",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
+                                  ],
+                                ),
                               ),
                             ),
                           ),
