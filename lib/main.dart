@@ -252,7 +252,7 @@ class ProfilePage extends StatelessWidget {
                   Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E293B),
+                      color: const Color(0xFF262E45),
                       borderRadius: BorderRadius.circular(16),
                     ),
                     padding: const EdgeInsets.all(20),
@@ -262,7 +262,7 @@ class ProfilePage extends StatelessWidget {
                         const Text("Defi to Ethereum Ratio",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 16)),
-                        const SizedBox(height: 80),
+                        const SizedBox(height: 100),
 
                         SizedBox(
                           height: 200,
@@ -314,7 +314,7 @@ class ProfilePage extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Color(0xFF2F364E),
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(16),
       ),
       padding: const EdgeInsets.only(left: 8, right: 16, top: 7, bottom: 8),
       child: Row(
@@ -324,7 +324,7 @@ class ProfilePage extends StatelessWidget {
           Expanded(
               child: Text(title,
                   style: const TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w500))),
+                      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700))),
           if (title == 'Change Password' || title == 'Sign Out')
             Image.asset('assets/arrow-right.png', width: 16, height: 16),
         ],
