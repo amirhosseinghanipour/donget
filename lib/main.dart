@@ -247,7 +247,6 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                           ),
-                          const SizedBox(width: 60),
                         ],
                       ),
                     ),
