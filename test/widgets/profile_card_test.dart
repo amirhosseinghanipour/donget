@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:dongit/models/user.dart';
-import 'package:dongit/widgets/profile_card.dart';
+import 'package:donget/models/user.dart';
+import 'package:donget/widgets/profile_card.dart';
 
 void main() {
   group('ProfileCard', () {
