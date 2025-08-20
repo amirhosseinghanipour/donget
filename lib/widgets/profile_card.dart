@@ -64,13 +64,13 @@ class ProfileCard extends StatelessWidget {
     return Stack(
       children: [
         Positioned(
-          top: 0,
-          left: 19,
+          top: AppDimensions.leftVectorTop,
+          left: AppDimensions.leftVectorLeft,
           child: Image.asset(AppIcons.leftVector),
         ),
         Positioned(
-          bottom: 0,
-          right: 17,
+          bottom: AppDimensions.rightVectorBottom,
+          right: AppDimensions.rightVectorRight,
           child: Image.asset(AppIcons.rightVectorSmall),
         ),
       ],

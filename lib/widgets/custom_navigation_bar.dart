@@ -79,7 +79,7 @@ class CustomNavigationBar extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const SizedBox(height: 28),
+        const SizedBox(height: AppDimensions.addItemButtonTopSpacing),
         const Text(
           'Add Item',
           style: AppTextStyles.caption,
