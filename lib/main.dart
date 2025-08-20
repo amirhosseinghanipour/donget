@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'dart:math' as math;
 
 void main() {
@@ -30,6 +31,10 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   // 0: Profile, 1: Friends, 2: Add Item, 3: Search, 4: Home
   int _currentIndex = 0;
+  
+  final String userUID = 'EQE13255';
+  final String userName = 'Martin Hamilton';
+  final String userEmail = 'Martin.Hammilton1177@gmail.com';
 
   void _onNavItemTapped(int index) {
     setState(() {
@@ -64,7 +69,19 @@ class _ProfilePageState extends State<ProfilePage> {
                   "Profile",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white),
                 ),
-                Image.asset('assets/Magnifer.png', width: 28, height: 28),
+                Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () {},
+                    borderRadius: BorderRadius.circular(14),
+                    splashColor: const Color(0xFF5467FF).withOpacity(0.3),
+                    highlightColor: const Color(0xFF5467FF).withOpacity(0.2),
+                    child: Padding(
+                      padding: const EdgeInsets.all(4),
+                      child: Image.asset('assets/Magnifer.png', width: 28, height: 28),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -92,14 +109,14 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: const EdgeInsets.only(top: 60, bottom: 20),
                               child: Center(
                                 child: Column(
-                                  children: const [
-                                    SizedBox(height: 8.16),
-                                    Text("Martin Hamilton",
-                                        style: TextStyle(
+                                  children: [
+                                    const SizedBox(height: 8.16),
+                                    Text(userName,
+                                        style: const TextStyle(
                                             fontSize: 18, fontWeight: FontWeight.w900)),
-                                    SizedBox(height: 4),
-                                    Text("Martin.Hammilton1177@gmail.com",
-                                        style: TextStyle(
+                                    const SizedBox(height: 4),
+                                    Text(userEmail,
+                                        style: const TextStyle(
                                           fontSize: 12, fontWeight: FontWeight.w500, color: Color(0xFFCCD1E0))),
                                   ],
                                 ),
@@ -139,13 +156,22 @@ class _ProfilePageState extends State<ProfilePage> {
                             Positioned(
                               bottom: 0,
                               right: 0,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  color: Color(0xFF2F364E),
-                                  shape: BoxShape.circle,
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  onTap: () {},
+                                  borderRadius: BorderRadius.circular(20),
+                                  splashColor: const Color(0xFF5467FF).withOpacity(0.3),
+                                  highlightColor: const Color(0xFF5467FF).withOpacity(0.2),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF2F364E),
+                                      shape: BoxShape.circle,
+                                    ),
+                                    padding: const EdgeInsets.all(1),
+                                    child: Image.asset('assets/edit.png', width: 32, height: 32),
+                                  ),
                                 ),
-                                padding: const EdgeInsets.all(1),
-                                child: Image.asset('assets/edit.png', width: 32, height: 32),
                               ),
                             ),
                           ],
@@ -215,36 +241,63 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                           ),
-                          _infoCard(
-                            bg: const Color(0xFF5467FF),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text(
-                                  "UID (Referral Code)",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.min,
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () async {
+                                await Clipboard.setData(ClipboardData(text: userUID));
+                                if (context.mounted) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'UID copied to clipboard: $userUID',
+                                        style: const TextStyle(color: Colors.white),
+                                      ),
+                                      duration: const Duration(seconds: 2),
+                                      backgroundColor: const Color(0xFF5467FF),
+                                      behavior: SnackBarBehavior.floating,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                              borderRadius: BorderRadius.circular(10),
+                              splashColor: Colors.white.withOpacity(0.2),
+                              highlightColor: Colors.white.withOpacity(0.1),
+                              child: _infoCard(
+                                bg: const Color(0xFF5467FF),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Image.asset('assets/copy.png', width: 16, height: 16),
-                                    const SizedBox(width: 4),
-                                    Text(
-                                      "EQE13255",
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w700,
+                                    const Text(
+                                      "UID (Referral Code)",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w400,
                                         color: Colors.white,
                                       ),
                                     ),
+                                    Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Image.asset('assets/copy.png', width: 16, height: 16),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          userUID,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w700,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                         ],
@@ -430,9 +483,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        onTap: () {
-          print('Tapped: $title');
-        },
+        onTap: () {},
         borderRadius: BorderRadius.circular(16),
         splashColor: const Color(0xFF5467FF).withOpacity(0.2),
         highlightColor: const Color(0xFF5467FF).withOpacity(0.1),
