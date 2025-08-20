@@ -145,7 +145,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   shape: BoxShape.circle,
                                 ),
                                 padding: const EdgeInsets.all(1),
-                                child: Image.asset('assets/edit.png', width: 30, height: 30),
+                                child: Image.asset('assets/edit.png', width: 32, height: 32),
                               ),
                             ),
                           ],
@@ -312,7 +312,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 18,
-                                                color: Colors.white)),
+                                                color: Color(0xFFFAFAFA))),
                                         const SizedBox(width: 4),
                                         Container(
                                           padding: const EdgeInsets.only(left: 6, right: 10),
@@ -355,7 +355,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 18,
-                                                color: Colors.white)),
+                                                color: Color(0xFFFAFAFA))),
                                         const SizedBox(width: 4),
                                         Container(
                                           padding: const EdgeInsets.only(left: 6, right: 10),
