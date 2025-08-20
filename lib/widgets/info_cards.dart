@@ -48,7 +48,7 @@ class InfoCards extends StatelessWidget {
                 size: AppDimensions.iconSizeXS,
                 color: Color(0xFF2E354D),
               ),
-              const SizedBox(width: AppDimensions.spacingL),
+              const SizedBox(width: AppDimensions.spacingSS),
               Text(user.package, style: AppTextStyles.infoCardValue),
             ],
           ),
