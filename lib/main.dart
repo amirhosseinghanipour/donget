@@ -281,21 +281,21 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 16)),
                         ),
-                        const SizedBox(height: 80),
+                        const SizedBox(height: 90),
 
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 65.12),
+                        Center(
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
                               SizedBox(
+                                width: 267.37,
                                 height: 100,
                                 child: CustomPaint(
                                   painter: GaugeChartPainter(
                                     defiPercentage: 36,
                                     ethereumPercentage: 64,
                                   ),
-                                  size: Size.infinite,
+                                  size: const Size(267.37, 100),
                                 ),
                               ),
                               Positioned(
