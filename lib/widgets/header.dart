@@ -4,8 +4,8 @@ import '../constants/app_dimensions.dart';
 import '../constants/app_text_styles.dart';
 import '../constants/app_icons.dart';
 
-class ProfileHeader extends StatelessWidget {
-  const ProfileHeader({super.key});
+class Header extends StatelessWidget {
+  const Header({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
       body: Column(
         children: [
-          const ProfileHeader(),
+          const Header(),
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(AppDimensions.spacingXL),

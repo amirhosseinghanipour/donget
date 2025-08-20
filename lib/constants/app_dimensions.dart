@@ -57,12 +57,6 @@ class AppDimensions {
   static const double gaugeChartLegendDotSize = 17.47;
   static const double gaugeChartLegendBorderWidth = 2.18;
   
-  // decorative elements
-  static const double leftVectorTop = 0.0;
-  static const double leftVectorLeft = 19.0;
-  static const double rightVectorBottom = 0.0;
-  static const double rightVectorRight = 17.0;
-  
   // navigation
   static const double addItemButtonTopSpacing = 28.0;
 } 

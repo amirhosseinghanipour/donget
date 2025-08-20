@@ -36,6 +36,7 @@ class ProfileCard extends StatelessWidget {
         children: [
           _buildCardContent(),
           _buildDecorativeVectors(),
+          _buildRightVector(),
         ],
       ),
     );
@@ -61,19 +62,18 @@ class ProfileCard extends StatelessWidget {
   }
 
   Widget _buildDecorativeVectors() {
-    return Stack(
-      children: [
-        Positioned(
-          top: AppDimensions.leftVectorTop,
-          left: AppDimensions.leftVectorLeft,
-          child: Image.asset(AppIcons.leftVector),
-        ),
-        Positioned(
-          bottom: AppDimensions.rightVectorBottom,
-          right: AppDimensions.rightVectorRight,
-          child: Image.asset(AppIcons.rightVectorSmall),
-        ),
-      ],
+    return Positioned(
+      top: 0,
+      left: 19,
+      child: Image.asset(AppIcons.leftVector),
+    );
+  }
+
+  Widget _buildRightVector() {
+    return Positioned(
+      bottom: 0,
+      right: 17,
+      child: Image.asset(AppIcons.rightVectorSmall),
     );
   }
 
