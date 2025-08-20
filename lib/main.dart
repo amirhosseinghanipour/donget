@@ -490,18 +490,19 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   static Widget _buildMenuItem(IconData icon, String title) {
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: () {},
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFF2F364E),
         borderRadius: BorderRadius.circular(16),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+        onTap: () {},
         splashColor: const Color(0xFF5467FF).withOpacity(0.2),
         highlightColor: const Color(0xFF5467FF).withOpacity(0.1),
         child: Container(
-          decoration: BoxDecoration(
-            color: const Color(0xFF2F364E),
-            borderRadius: BorderRadius.circular(16),
-          ),
           padding: const EdgeInsets.only(left: 8, right: 16, top: 7, bottom: 8),
           child: Row(
             children: [
@@ -517,7 +518,8 @@ class _ProfilePageState extends State<ProfilePage> {
           ),
         ),
       ),
-    );
+    ),
+  );
   }
 
   static Widget _menuIconFor(String title) {
@@ -577,33 +579,42 @@ class _ProfilePageState extends State<ProfilePage> {
 
   Widget _buildNavItem(int index, String asset, String label) {
     final isActive = _currentIndex == index;
-    return InkWell(
-      onTap: () => _onNavItemTapped(index),
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      borderRadius: BorderRadius.circular(8),
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              asset,
-              width: 22,
-              height: 22,
-              color: isActive ? Colors.white : const Color(0xFFA7B0CC),
+    return Container(
+      decoration: BoxDecoration(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => _onNavItemTapped(index),
+          splashColor: isActive ? Colors.transparent : const Color(0xFF5467FF).withOpacity(0.2),
+          highlightColor: isActive ? Colors.transparent : const Color(0xFF5467FF).withOpacity(0.1),
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  asset,
+                  width: 22,
+                  height: 22,
+                  color: isActive ? Colors.white : const Color(0xFFA7B0CC),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: isActive ? Colors.white : const Color(0xFFA7B0CC),
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(height: 2),
-            Text(
-              label,
-              style: TextStyle(
-                color: isActive ? Colors.white : const Color(0xFFA7B0CC),
-                fontSize: 11,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );
@@ -618,11 +629,11 @@ class _ProfilePageState extends State<ProfilePage> {
           shape: BoxShape.circle,
         ),
         padding: const EdgeInsets.all(4),
+        clipBehavior: Clip.antiAlias,
         child: Material(
           color: Colors.transparent,
           child: InkWell(
             onTap: () {},
-            borderRadius: BorderRadius.circular(20),
             splashColor: const Color(0xFF23B58A).withOpacity(0.3),
             highlightColor: const Color(0xFF23B58A).withOpacity(0.2),
             child: Container(
@@ -632,12 +643,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Color(0xFF23B58A),
                 shape: BoxShape.circle,
               ),
-                             child: Image.asset(
-                 AppIcons.navBarMainButton,
-                 width: 40,
-                 height: 40,
-                 fit: BoxFit.contain,
-               ),
+              child: Image.asset(
+                AppIcons.navBarMainButton,
+                width: 40,
+                height: 40,
+                fit: BoxFit.contain,
+              ),
             ),
           ),
         ),
