@@ -429,7 +429,7 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Row(
         children: [
           _menuIconFor(title),
-          const SizedBox(width: 16),
+          const SizedBox(width: 12),
           Expanded(
               child: Text(title,
                   style: const TextStyle(
