@@ -242,61 +242,68 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                           ),
-                          Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () async {
-                                await Clipboard.setData(ClipboardData(text: userUID));
-                                if (context.mounted) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'UID copied to clipboard: $userUID',
-                                        style: const TextStyle(color: Colors.white),
-                                      ),
-                                      duration: const Duration(seconds: 2),
-                                      backgroundColor: const Color(0xFF5467FF),
-                                      behavior: SnackBarBehavior.floating,
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                    ),
-                                  );
-                                }
-                              },
+                          Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xFF5467FF),
                               borderRadius: BorderRadius.circular(10),
-                              splashColor: Colors.white.withOpacity(0.2),
-                              highlightColor: Colors.white.withOpacity(0.1),
-                              child: _infoCard(
-                                bg: const Color(0xFF5467FF),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text(
-                                      "UID (Referral Code)",
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Image.asset(AppIcons.copy, width: 16, height: 16),
-                                        const SizedBox(width: 4),
-                                        Text(
-                                          userUID,
-                                          style: const TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w700,
-                                            color: Colors.white,
-                                          ),
+                            ),
+                            clipBehavior: Clip.antiAlias,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                onTap: () async {
+                                  await Clipboard.setData(ClipboardData(text: userUID));
+                                  if (context.mounted) {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'UID copied to clipboard: $userUID',
+                                          style: const TextStyle(color: Colors.white),
                                         ),
-                                      ],
-                                    ),
-                                  ],
+                                        duration: const Duration(seconds: 2),
+                                        backgroundColor: const Color(0xFF5467FF),
+                                        behavior: SnackBarBehavior.floating,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(8),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                },
+                                splashColor: Colors.white.withOpacity(0.2),
+                                highlightColor: Colors.white.withOpacity(0.1),
+                                child: Container(
+                                  margin: const EdgeInsets.only(right: 16),
+                                  padding: const EdgeInsets.symmetric(horizontal: 17),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        "UID (Referral Code)",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w400,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Image.asset(AppIcons.copy, width: 16, height: 16),
+                                          const SizedBox(width: 4),
+                                          Text(
+                                            userUID,
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
