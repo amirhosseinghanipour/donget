@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math' as math;
+import 'constants/app_icons.dart';
 
 void main() {
   runApp(const MyApp());
@@ -64,7 +65,7 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset('assets/logo.png', width: 35, height: 35),
+                Image.asset(AppIcons.logo, width: 35, height: 35),
                 const Text(
                   "Profile",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w900, color: Colors.white),
@@ -78,7 +79,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     highlightColor: const Color(0xFF5467FF).withOpacity(0.2),
                     child: Padding(
                       padding: const EdgeInsets.all(4),
-                      child: Image.asset('assets/Magnifer.png', width: 28, height: 28),
+                      child: Image.asset(AppIcons.magnifier, width: 28, height: 28),
                     ),
                   ),
                 ),
@@ -126,12 +127,12 @@ class _ProfilePageState extends State<ProfilePage> {
                             Positioned(
                               top: 0,
                               left: 19,
-                              child: Image.asset('assets/left_vector.png'),
+                              child: Image.asset(AppIcons.leftVector),
                             ),
                             Positioned(
                               bottom: 0,
                               right: 17,
-                              child: Image.asset('assets/right_vector_small.png'),
+                              child: Image.asset(AppIcons.rightVectorSmall),
                             ),
                           ],
                         ),
@@ -150,7 +151,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                               child: const CircleAvatar(
                                 radius: 45,
-                                backgroundImage: AssetImage("assets/avatar.png"),
+                                backgroundImage: AssetImage(AppIcons.avatar),
                               ),
                             ),
                             Positioned(
@@ -169,7 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       shape: BoxShape.circle,
                                     ),
                                     padding: const EdgeInsets.all(1),
-                                    child: Image.asset('assets/edit.png', width: 32, height: 32),
+                                    child: Image.asset(AppIcons.edit, width: 32, height: 32),
                                   ),
                                 ),
                               ),
@@ -283,7 +284,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     Row(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
-                                        Image.asset('assets/copy.png', width: 16, height: 16),
+                                        Image.asset(AppIcons.copy, width: 16, height: 16),
                                         const SizedBox(width: 4),
                                         Text(
                                           userUID,
@@ -504,7 +505,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       style: const TextStyle(
                           color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700))),
               if (title == 'Change Password' || title == 'Sign Out')
-                Image.asset('assets/arrow-right.png', width: 16, height: 16),
+                Image.asset(AppIcons.arrowRight, width: 16, height: 16),
             ],
           ),
         ),
@@ -515,9 +516,9 @@ class _ProfilePageState extends State<ProfilePage> {
   static Widget _menuIconFor(String title) {
     switch (title) {
       case 'Change Password':
-        return Image.asset('assets/pass.png', width: 44, height: 44);
+        return Image.asset(AppIcons.password, width: 44, height: 44);
       case 'Sign Out':
-        return Image.asset('assets/signout.png', width: 44, height: 44);
+        return Image.asset(AppIcons.signOut, width: 44, height: 44);
       default:
         return const SizedBox(width: 44, height: 44);
     }
@@ -533,10 +534,10 @@ class _ProfilePageState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
-              child: _buildNavItem(0, 'assets/user_circle.png', 'Profile'),
+              child: _buildNavItem(0, AppIcons.profile, 'Profile'),
             ),
             Expanded(
-              child: _buildNavItem(1, 'assets/users.png', 'Friends'),
+              child: _buildNavItem(1, AppIcons.friends, 'Friends'),
             ),
             Expanded(
               child: Column(
@@ -556,10 +557,10 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             Expanded(
-              child: _buildNavItem(3, 'assets/search.png', 'Search'),
+              child: _buildNavItem(3, AppIcons.search, 'Search'),
             ),
             Expanded(
-              child: _buildNavItem(4, 'assets/Home.png', 'Home'),
+              child: _buildNavItem(4, AppIcons.home, 'Home'),
             ),
           ],
         ),
@@ -624,12 +625,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Color(0xFF23B58A),
                 shape: BoxShape.circle,
               ),
-              child: Image.asset(
-                'assets/NavBar Main Button.png',
-                width: 40,
-                height: 40,
-                fit: BoxFit.contain,
-              ),
+                             child: Image.asset(
+                 AppIcons.navBarMainButton,
+                 width: 40,
+                 height: 40,
+                 fit: BoxFit.contain,
+               ),
             ),
           ),
         ),
