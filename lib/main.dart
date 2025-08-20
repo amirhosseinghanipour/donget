@@ -285,7 +285,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
                         Center(
                           child: Stack(
-                            alignment: Alignment.center,
+                            alignment: Alignment.topCenter,
                             children: [
                               SizedBox(
                                 width: 267.37,
@@ -611,6 +611,10 @@ class GaugeChartPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final strokeWidth = 20.0;
     final radius = size.width / 2 - strokeWidth;
+    final gapSize = 15.0;
+    
+    // inward offset
+    final backgroundOffset = 6.0;
 
     final center = Offset(size.width / 2, size.height / 2);
 
@@ -621,11 +625,22 @@ class GaugeChartPainter extends CustomPainter {
       ..strokeCap = StrokeCap.round;
 
     canvas.drawArc(
-        Rect.fromCircle(center: center, radius: radius),
-        math.pi,
-        math.pi,
+        Rect.fromCircle(center: center, radius: radius - backgroundOffset),
+        math.pi + 0.05,
+        math.pi - 0.1,
         false,
         bgPaint);
+
+    // gap in radians
+    final gapRadians = (gapSize / radius) * 2;
+    
+    // total available space excluding gaps
+    final totalPercentage = defiPercentage + ethereumPercentage;
+    final availableRadians = math.pi - gapRadians;
+    
+    // segment sizes
+    final defiRadians = (defiPercentage / totalPercentage) * availableRadians;
+    final ethRadians = (ethereumPercentage / totalPercentage) * availableRadians;
 
     final defiPaint = Paint()
       ..color = const Color(0xFF5467FF)
@@ -636,7 +651,7 @@ class GaugeChartPainter extends CustomPainter {
     canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
         math.pi,
-        math.pi * (defiPercentage / 100),
+        defiRadians,
         false,
         defiPaint);
 
@@ -648,8 +663,8 @@ class GaugeChartPainter extends CustomPainter {
 
     canvas.drawArc(
         Rect.fromCircle(center: center, radius: radius),
-        math.pi + math.pi * (defiPercentage / 100),
-        math.pi * (ethereumPercentage / 100),
+        math.pi + defiRadians + gapRadians,
+        ethRadians,
         false,
         ethPaint);
   }
