@@ -284,115 +284,122 @@ class _ProfilePageState extends State<ProfilePage> {
                         const SizedBox(height: 90),
 
                         Center(
-                          child: Stack(
-                            alignment: Alignment.topCenter,
-                            children: [
-                              SizedBox(
-                                width: 267.37,
-                                height: 100,
-                                child: CustomPaint(
-                                  painter: GaugeChartPainter(
-                                    defiPercentage: 36,
-                                    ethereumPercentage: 64,
+                          child: Builder(
+                            builder: (context) {
+                              const double defiPercentage = 36.0;
+                              const double ethereumPercentage = 64.0;
+                              
+                              return Stack(
+                                alignment: Alignment.topCenter,
+                                children: [
+                                  SizedBox(
+                                    width: 267.37,
+                                    height: 100,
+                                    child: CustomPaint(
+                                      painter: GaugeChartPainter(
+                                        defiPercentage: defiPercentage,
+                                        ethereumPercentage: ethereumPercentage,
+                                      ),
+                                      size: const Size(267.37, 100),
+                                    ),
                                   ),
-                                  size: const Size(267.37, 100),
-                                ),
-                              ),
-                              Positioned(
-                                bottom: 35,
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                  Positioned(
+                                    bottom: 35,
+                                    child: Column(
                                       mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        const Text("64%",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 18,
-                                                color: Color(0xFFFAFAFA))),
-                                        const SizedBox(width: 4),
-                                        Container(
-                                          padding: const EdgeInsets.only(left: 6, right: 10),
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFF20263A),
-                                            borderRadius: BorderRadius.circular(26.21),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Container(
-                                                width: 17.47,
-                                                height: 17.47,
-                                                decoration: BoxDecoration(
-                                                  color: const Color(0xFFF7C42C),
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(
-                                                    color: const Color(0xFF262E45),
-                                                    width: 2.18,
-                                                  ),
-                                                ),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text("${ethereumPercentage.toInt()}%",
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 18,
+                                                    color: Color(0xFFFAFAFA))),
+                                            const SizedBox(width: 4),
+                                            Container(
+                                              padding: const EdgeInsets.only(left: 6, right: 10),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFF20263A),
+                                                borderRadius: BorderRadius.circular(26.21),
                                               ),
-                                              const SizedBox(width: 4),
-                                              const Text("Ethereum",
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 16,
-                                                      color: Colors.white)),
-                                            ],
-                                          ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    width: 17.47,
+                                                    height: 17.47,
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(0xFFF7C42C),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: const Color(0xFF262E45),
+                                                        width: 2.18,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 4),
+                                                  const Text("Ethereum",
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.w700,
+                                                          fontSize: 16,
+                                                          color: Colors.white)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        const SizedBox(height: 6),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text("${defiPercentage.toInt()}%",
+                                                style: const TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 18,
+                                                    color: Color(0xFFFAFAFA))),
+                                            const SizedBox(width: 4),
+                                            Container(
+                                              padding: const EdgeInsets.only(left: 6, right: 10),
+                                              decoration: BoxDecoration(
+                                                color: const Color(0xFF20263A),
+                                                borderRadius: BorderRadius.circular(26.21),
+                                              ),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.min,
+                                                children: [
+                                                  Container(
+                                                    width: 17.47,
+                                                    height: 17.47,
+                                                    decoration: BoxDecoration(
+                                                      color: const Color(0xFF5467FF),
+                                                      shape: BoxShape.circle,
+                                                      border: Border.all(
+                                                        color: const Color(0xFF262E45),
+                                                        width: 2.18,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(width: 4),
+                                                  const Text("DeFi",
+                                                      style: TextStyle(
+                                                          fontWeight: FontWeight.w700,
+                                                          fontSize: 16,
+                                                          color: Colors.white)),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                    const SizedBox(height: 6),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Text("36%",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 18,
-                                                color: Color(0xFFFAFAFA))),
-                                        const SizedBox(width: 4),
-                                        Container(
-                                          padding: const EdgeInsets.only(left: 6, right: 10),
-                                          decoration: BoxDecoration(
-                                            color: const Color(0xFF20263A),
-                                            borderRadius: BorderRadius.circular(26.21),
-                                          ),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Container(
-                                                width: 17.47,
-                                                height: 17.47,
-                                                decoration: BoxDecoration(
-                                                  color: const Color(0xFF5467FF),
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(
-                                                    color: const Color(0xFF262E45),
-                                                    width: 2.18,
-                                                  ),
-                                                ),
-                                              ),
-                                              const SizedBox(width: 4),
-                                              const Text("DeFi",
-                                                  style: TextStyle(
-                                                      fontWeight: FontWeight.w700,
-                                                      fontSize: 16,
-                                                      color: Colors.white)),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                                  ),
+                                ],
+                              );
+                            },
                           ),
                         ),
                       ],
