@@ -20,13 +20,29 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  // 0: Profile, 1: Friends, 2: Add Item, 3: Search, 4: Home
+  int _currentIndex = 0;
+
+  void _onNavItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: _buildBottomNav(),
+      floatingActionButton: _buildFloatingActionButton(),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: _buildBottomAppBar(),
       body: Column(
         children: [
           // profile titlebar
@@ -269,30 +285,100 @@ class ProfilePage extends StatelessWidget {
                         const SizedBox(height: 36),
 
                         Padding(
-                          padding: const EdgeInsets.only(top: 80, bottom: 32.68, left: 65.12, right:65.12),
-                          child: SizedBox(
-                            child: CustomPaint(
-                              painter: GaugeChartPainter(
-                                defiPercentage: 36,
-                                ethereumPercentage: 64,
+                          padding: const EdgeInsets.symmetric(horizontal: 65.12),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              SizedBox(
+                                height: 200,
+                                child: CustomPaint(
+                                  painter: GaugeChartPainter(
+                                    defiPercentage: 36,
+                                    ethereumPercentage: 64,
+                                  ),
+                                  size: Size.infinite,
+                                ),
                               ),
-                              child: Center(
+                              Positioned(
+                                bottom: 83,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text("${ethereumPercentage.toInt()}% Ethereum",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
-                                    SizedBox(height: 6),
-                                    Text("${defiPercentage.toInt()}% DeFi",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Text("64%",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 18,
+                                                color: Colors.white)),
+                                        const SizedBox(width: 4),
+                                        Container(
+                                          padding: const EdgeInsets.only(left: 6, right: 10),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF20263A),
+                                            borderRadius: BorderRadius.circular(26.21),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                Icons.circle,
+                                                size: 17.47,
+                                                color: const Color(0xFFF7C42C),
+                                              ),
+                                              const SizedBox(width: 4),
+                                              const Text("Ethereum",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 16,
+                                                      color: Colors.white)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 6),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Text("36%",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 18,
+                                                color: Colors.white)),
+                                        const SizedBox(width: 4),
+                                        Container(
+                                          padding: const EdgeInsets.only(left: 6, right: 10),
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xFF20263A),
+                                            borderRadius: BorderRadius.circular(26.21),
+                                          ),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                Icons.circle,
+                                                size: 17.47,
+                                                color: const Color(0xFF5467FF),
+                                              ),
+                                              const SizedBox(width: 4),
+                                              const Text("DeFi",
+                                                  style: TextStyle(
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: 16,
+                                                      color: Colors.white)),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ],
@@ -352,111 +438,138 @@ class ProfilePage extends StatelessWidget {
     }
   }
 
-  static Widget _buildBottomNav() {
+  Widget _buildBottomAppBar() {
     return BottomAppBar(
       color: const Color(0xFF2F364E),
+      shape: const CustomNotchedShape(),
       child: SizedBox(
-        height: 70,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            _NavItemAsset(asset: 'assets/user_circle.png', label: 'Profile'),
-            const SizedBox(width: 16),
-            _NavItemAsset(asset: 'assets/users.png', label: 'Friends'),
-            const SizedBox(width: 16),
-            _NavMainButton(),
-            const SizedBox(width: 16),
-            _NavItemAsset(asset: 'assets/search.png', label: 'Search'),
-            const SizedBox(width: 16),
-            _NavItemAsset(asset: 'assets/Home.png', label: 'Home'),
+            Expanded(child: _buildNavItem(0, 'assets/user_circle.png', 'Profile')),
+            Expanded(child: _buildNavItem(1, 'assets/users.png', 'Friends')),
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  SizedBox(height: 30),
+                  Text(
+                    'Add Item',
+                    style: TextStyle(
+                      color: Color(0xFFA7B0CC),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(child: _buildNavItem(3, 'assets/search.png', 'Search')),
+            Expanded(child: _buildNavItem(4, 'assets/Home.png', 'Home')),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(int index, String asset, String label) {
+    final isActive = _currentIndex == index;
+    return InkWell(
+      onTap: () => _onNavItemTapped(index),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Image.asset(
+            asset,
+            width: 22,
+            height: 22,
+            color: isActive ? Colors.white : const Color(0xFFA7B0CC),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: TextStyle(
+              color: isActive ? Colors.white : const Color(0xFFA7B0CC),
+              fontSize: 12,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFloatingActionButton() {
+    return Transform.translate(
+      offset: const Offset(0, 12),
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFF2F364E),
+          shape: BoxShape.circle,
+        ),
+        padding: const EdgeInsets.all(4),
+        child: RawMaterialButton(
+          onPressed: () {},
+          shape: const CircleBorder(),
+          fillColor: const Color(0xFF23B58A),
+          constraints: const BoxConstraints.tightFor(
+            width: 40,
+            height: 40,
+          ), // exact size
+          child: Image.asset(
+            'assets/NavBar Main Button.png',
+            width: 40,
+            height: 40,
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );
   }
 }
 
-class _NavItem extends StatelessWidget {
-  final IconData icon;
-  final String label;
-
-  const _NavItem({required this.icon, required this.label});
+class CustomNotchedShape extends NotchedShape {
+  const CustomNotchedShape();
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(icon, color: Colors.white),
-        const SizedBox(height: 4),
-        Text(label, style: const TextStyle(color: Colors.white, fontSize: 12)),
-      ],
+  Path getOuterPath(Rect host, Rect? guest) {
+    if (guest == null || !host.overlaps(guest)) {
+      return Path()..addRect(host);
+    }
+
+    final fabRadius = guest.width / 4.0;
+    // inward curve width
+    final notchWidth = fabRadius * 2;
+    // top of the curve
+    final notchDepth = fabRadius;
+    final center = guest.center;
+
+    final path = Path()..moveTo(host.left, host.top);
+
+    // left straight part before curve
+    path.lineTo(center.dx - notchWidth * 1.5, host.top);
+
+    // left curve inward
+    path.cubicTo(
+      center.dx - notchWidth * 0.6, host.top,
+      center.dx - notchWidth * 0.8, host.top - notchDepth,
+      center.dx, host.top - notchDepth,
     );
-  }
-}
 
-class _NavItemAsset extends StatelessWidget {
-  final String asset;
-  final String label;
-
-  const _NavItemAsset({required this.asset, required this.label});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 2),
-          child: Image.asset(asset, width: 22, height: 22),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label, 
-          style: const TextStyle(
-            color: Color(0xFFA7B0CC), 
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ],
+    // right curve
+    path.cubicTo(
+      center.dx + notchWidth * 0.8, host.top - notchDepth,
+      center.dx + notchWidth * 0.6, host.top,
+      center.dx + notchWidth * 1.5, host.top,
     );
-  }
-}
 
-class _NavMainButton extends StatelessWidget {
-  const _NavMainButton();
+    // rest of nav bar
+    path.lineTo(host.right, host.top);
+    path.lineTo(host.right, host.bottom);
+    path.lineTo(host.left, host.bottom);
 
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: const Color(0xFF2F364E), width: 4),
-            shape: BoxShape.circle,
-          ),
-          child: CircleAvatar(
-            backgroundColor: Color(0xFF23B58A),
-            radius: 20,
-            child: Image.asset('assets/NavBar Main Button.png', width: 32, height: 32),
-          ),
-        ),
-        const SizedBox(height: 4),
-        const Text(
-          'Add Item', 
-          style: TextStyle(
-            color: Color(0xFFA7B0CC), 
-            fontSize: 12,
-            fontWeight: FontWeight.w700,
-          ),
-        ),
-      ],
-    );
+    path.close();
+    return path;
   }
 }
 
