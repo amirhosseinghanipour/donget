@@ -179,11 +179,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     Icon(Icons.circle, size: 6, color: Color(0xFF2E354D)),
-                                    SizedBox(width: 8),
+                                    SizedBox(width: 6),
                                     Text("Dolphin",
                                         style: const TextStyle(
                                             fontSize: 14,
-                                            fontWeight: FontWeight.w900,
+                                            fontWeight: FontWeight.w700,
                                             color: Color(0xFF2E354D))),
                                   ],
                                 ),
@@ -208,7 +208,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   "30 November 2025",
                                   style: const TextStyle(
                                     fontSize: 14,
-                                    fontWeight: FontWeight.w900,
+                                    fontWeight: FontWeight.w700,
                                     color: Color(0xFF2E354D),
                                   ),
                                 ),
@@ -238,7 +238,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       "EQE13255",
                                       style: const TextStyle(
                                         fontSize: 14,
-                                        fontWeight: FontWeight.w900,
+                                        fontWeight: FontWeight.w700,
                                         color: Colors.white,
                                       ),
                                     ),
