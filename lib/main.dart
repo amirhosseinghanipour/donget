@@ -427,23 +427,34 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   static Widget _buildMenuItem(IconData icon, String title) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Color(0xFF2F364E),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: () {
+          print('Tapped: $title');
+        },
         borderRadius: BorderRadius.circular(16),
-      ),
-      padding: const EdgeInsets.only(left: 8, right: 16, top: 7, bottom: 8),
-      child: Row(
-        children: [
-          _menuIconFor(title),
-          const SizedBox(width: 12),
-          Expanded(
-              child: Text(title,
-                  style: const TextStyle(
-                      color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700))),
-          if (title == 'Change Password' || title == 'Sign Out')
-            Image.asset('assets/arrow-right.png', width: 16, height: 16),
-        ],
+        splashColor: const Color(0xFF5467FF).withOpacity(0.2),
+        highlightColor: const Color(0xFF5467FF).withOpacity(0.1),
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFF2F364E),
+            borderRadius: BorderRadius.circular(16),
+          ),
+          padding: const EdgeInsets.only(left: 8, right: 16, top: 7, bottom: 8),
+          child: Row(
+            children: [
+              _menuIconFor(title),
+              const SizedBox(width: 12),
+              Expanded(
+                  child: Text(title,
+                      style: const TextStyle(
+                          color: Colors.white, fontSize: 14, fontWeight: FontWeight.w700))),
+              if (title == 'Change Password' || title == 'Sign Out')
+                Image.asset('assets/arrow-right.png', width: 16, height: 16),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -507,26 +518,32 @@ class _ProfilePageState extends State<ProfilePage> {
     final isActive = _currentIndex == index;
     return InkWell(
       onTap: () => _onNavItemTapped(index),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            asset,
-            width: 24,
-            height: 24,
-            color: isActive ? Colors.white : const Color(0xFFA7B0CC),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: TextStyle(
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      borderRadius: BorderRadius.circular(8),
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              asset,
+              width: 22,
+              height: 22,
               color: isActive ? Colors.white : const Color(0xFFA7B0CC),
-              fontSize: 12,
-              fontWeight: FontWeight.w700,
             ),
-          ),
-        ],
+            const SizedBox(height: 2),
+            Text(
+              label,
+              style: TextStyle(
+                color: isActive ? Colors.white : const Color(0xFFA7B0CC),
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -540,19 +557,27 @@ class _ProfilePageState extends State<ProfilePage> {
           shape: BoxShape.circle,
         ),
         padding: const EdgeInsets.all(4),
-        child: RawMaterialButton(
-          onPressed: () {},
-          shape: const CircleBorder(),
-          fillColor: const Color(0xFF23B58A),
-          constraints: const BoxConstraints.tightFor(
-            width: 40,
-            height: 40,
-          ), // exact size
-          child: Image.asset(
-            'assets/NavBar Main Button.png',
-            width: 40,
-            height: 40,
-            fit: BoxFit.contain,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: () {},
+            borderRadius: BorderRadius.circular(20),
+            splashColor: const Color(0xFF23B58A).withOpacity(0.3),
+            highlightColor: const Color(0xFF23B58A).withOpacity(0.2),
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: const BoxDecoration(
+                color: Color(0xFF23B58A),
+                shape: BoxShape.circle,
+              ),
+              child: Image.asset(
+                'assets/NavBar Main Button.png',
+                width: 40,
+                height: 40,
+                fit: BoxFit.contain,
+              ),
+            ),
           ),
         ),
       ),
