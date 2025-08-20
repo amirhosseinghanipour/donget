@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
-import 'constants/app_colors.dart';
-import 'constants/app_dimensions.dart';
+import 'constants/constants.dart';
 import 'models/user.dart';
-import 'widgets/profile_header.dart';
-import 'widgets/profile_card.dart';
-import 'widgets/info_cards.dart';
-import 'widgets/menu_items.dart';
-import 'widgets/gauge_chart.dart';
-import 'widgets/custom_navigation_bar.dart';
-import 'widgets/custom_floating_action_button.dart';
+import 'widgets/widgets.dart';
 
 void main() {
   runApp(const MyApp());
