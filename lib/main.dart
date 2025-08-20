@@ -282,7 +282,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 16)),
                         ),
-                        const SizedBox(height: 36),
+                        const SizedBox(height: 80),
 
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 65.12),
@@ -290,7 +290,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             alignment: Alignment.center,
                             children: [
                               SizedBox(
-                                height: 200,
+                                height: 100,
                                 child: CustomPaint(
                                   painter: GaugeChartPainter(
                                     defiPercentage: 36,
@@ -300,9 +300,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ),
                               Positioned(
-                                bottom: 83,
+                                bottom: 35,
                                 child: Column(
                                   mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
@@ -323,10 +324,17 @@ class _ProfilePageState extends State<ProfilePage> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Icon(
-                                                Icons.circle,
-                                                size: 17.47,
-                                                color: const Color(0xFFF7C42C),
+                                              Container(
+                                                width: 17.47,
+                                                height: 17.47,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFFF7C42C),
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: const Color(0xFF262E45),
+                                                    width: 2.18,
+                                                  ),
+                                                ),
                                               ),
                                               const SizedBox(width: 4),
                                               const Text("Ethereum",
@@ -359,10 +367,17 @@ class _ProfilePageState extends State<ProfilePage> {
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
-                                              Icon(
-                                                Icons.circle,
-                                                size: 17.47,
-                                                color: const Color(0xFF5467FF),
+                                              Container(
+                                                width: 17.47,
+                                                height: 17.47,
+                                                decoration: BoxDecoration(
+                                                  color: const Color(0xFF5467FF),
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(
+                                                    color: const Color(0xFF262E45),
+                                                    width: 2.18,
+                                                  ),
+                                                ),
                                               ),
                                               const SizedBox(width: 4),
                                               const Text("DeFi",
@@ -443,16 +458,23 @@ class _ProfilePageState extends State<ProfilePage> {
       color: const Color(0xFF2F364E),
       shape: const CustomNotchedShape(),
       child: SizedBox(
+        height: 80,
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(child: _buildNavItem(0, 'assets/user_circle.png', 'Profile')),
-            Expanded(child: _buildNavItem(1, 'assets/users.png', 'Friends')),
+            Expanded(
+              child: _buildNavItem(0, 'assets/user_circle.png', 'Profile'),
+            ),
+            Expanded(
+              child: _buildNavItem(1, 'assets/users.png', 'Friends'),
+            ),
             Expanded(
               child: Column(
+                mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  SizedBox(height: 30),
-                  Text(
+                children: [
+                  const SizedBox(height: 28),
+                  const Text(
                     'Add Item',
                     style: TextStyle(
                       color: Color(0xFFA7B0CC),
@@ -463,8 +485,12 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-            Expanded(child: _buildNavItem(3, 'assets/search.png', 'Search')),
-            Expanded(child: _buildNavItem(4, 'assets/Home.png', 'Home')),
+            Expanded(
+              child: _buildNavItem(3, 'assets/search.png', 'Search'),
+            ),
+            Expanded(
+              child: _buildNavItem(4, 'assets/Home.png', 'Home'),
+            ),
           ],
         ),
       ),
@@ -477,15 +503,15 @@ class _ProfilePageState extends State<ProfilePage> {
       onTap: () => _onNavItemTapped(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             asset,
-            width: 22,
-            height: 22,
+            width: 24,
+            height: 24,
             color: isActive ? Colors.white : const Color(0xFFA7B0CC),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 4),
           Text(
             label,
             style: TextStyle(
