@@ -6,10 +6,7 @@ import '../constants/app_icons.dart';
 class CustomFloatingActionButton extends StatelessWidget {
   final VoidCallback? onPressed;
 
-  const CustomFloatingActionButton({
-    super.key,
-    this.onPressed,
-  });
+  const CustomFloatingActionButton({super.key, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -47,4 +44,4 @@ class CustomFloatingActionButton extends StatelessWidget {
       ),
     );
   }
-} 
+}

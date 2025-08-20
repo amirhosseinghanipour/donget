@@ -32,7 +32,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   // 0: Profile, 1: Friends, 2: Add Item, 3: Search, 4: Home
   int _currentIndex = 0;
-  
+
   final User _user = User.demo();
 
   void _onNavItemTapped(int index) {
@@ -44,9 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: CustomFloatingActionButton(
-        onPressed: () {},
-      ),
+      floatingActionButton: CustomFloatingActionButton(onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: CustomNavigationBar(
         currentIndex: _currentIndex,
@@ -74,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );

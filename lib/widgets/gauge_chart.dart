@@ -38,10 +38,7 @@ class GaugeChart extends StatelessWidget {
   Widget _buildHeader() {
     return const Padding(
       padding: EdgeInsets.all(AppDimensions.spacingXL),
-      child: Text(
-        "Defi to Ethereum Ratio",
-        style: AppTextStyles.headingSmall,
-      ),
+      child: Text("Defi to Ethereum Ratio", style: AppTextStyles.headingSmall),
     );
   }
 
@@ -51,10 +48,7 @@ class GaugeChart extends StatelessWidget {
         builder: (context) {
           return Stack(
             alignment: Alignment.topCenter,
-            children: [
-              _buildChartCanvas(),
-              _buildChartLegend(),
-            ],
+            children: [_buildChartCanvas(), _buildChartLegend()],
           );
         },
       ),
@@ -95,10 +89,7 @@ class GaugeChart extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(
-          "${percentage.toInt()}%",
-          style: AppTextStyles.chartPercentage,
-        ),
+        Text("${percentage.toInt()}%", style: AppTextStyles.chartPercentage),
         const SizedBox(width: AppDimensions.spacingS),
         Container(
           padding: const EdgeInsets.only(
@@ -137,7 +128,7 @@ class GaugeChart extends StatelessWidget {
 class GaugeChartPainter extends CustomPainter {
   final double defiPercentage;
   final double ethereumPercentage;
-  
+
   GaugeChartPainter({
     required this.defiPercentage,
     required this.ethereumPercentage,
@@ -156,7 +147,12 @@ class GaugeChartPainter extends CustomPainter {
     _drawDataArcs(canvas, center, radius, gapSize);
   }
 
-  void _drawBackgroundArc(Canvas canvas, Offset center, double radius, double backgroundOffset) {
+  void _drawBackgroundArc(
+    Canvas canvas,
+    Offset center,
+    double radius,
+    double backgroundOffset,
+  ) {
     final bgPaint = Paint()
       ..color = AppColors.chipBackground
       ..strokeWidth = AppDimensions.chartStrokeWidth
@@ -172,19 +168,37 @@ class GaugeChartPainter extends CustomPainter {
     );
   }
 
-  void _drawDataArcs(Canvas canvas, Offset center, double radius, double gapSize) {
+  void _drawDataArcs(
+    Canvas canvas,
+    Offset center,
+    double radius,
+    double gapSize,
+  ) {
     final gapRadians = (gapSize / radius) * 2;
     final totalPercentage = defiPercentage + ethereumPercentage;
     final availableRadians = math.pi - gapRadians;
-    
+
     final defiRadians = (defiPercentage / totalPercentage) * availableRadians;
-    final ethRadians = (ethereumPercentage / totalPercentage) * availableRadians;
+    final ethRadians =
+        (ethereumPercentage / totalPercentage) * availableRadians;
 
     _drawDefiArc(canvas, center, radius, defiRadians);
-    _drawEthereumArc(canvas, center, radius, defiRadians, gapRadians, ethRadians);
+    _drawEthereumArc(
+      canvas,
+      center,
+      radius,
+      defiRadians,
+      gapRadians,
+      ethRadians,
+    );
   }
 
-  void _drawDefiArc(Canvas canvas, Offset center, double radius, double defiRadians) {
+  void _drawDefiArc(
+    Canvas canvas,
+    Offset center,
+    double radius,
+    double defiRadians,
+  ) {
     final defiPaint = Paint()
       ..color = AppColors.defi
       ..strokeWidth = AppDimensions.chartStrokeWidth
@@ -200,7 +214,14 @@ class GaugeChartPainter extends CustomPainter {
     );
   }
 
-  void _drawEthereumArc(Canvas canvas, Offset center, double radius, double defiRadians, double gapRadians, double ethRadians) {
+  void _drawEthereumArc(
+    Canvas canvas,
+    Offset center,
+    double radius,
+    double defiRadians,
+    double gapRadians,
+    double ethRadians,
+  ) {
     final ethPaint = Paint()
       ..color = AppColors.ethereum
       ..strokeWidth = AppDimensions.chartStrokeWidth
@@ -218,4 +239,4 @@ class GaugeChartPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-} 
+}

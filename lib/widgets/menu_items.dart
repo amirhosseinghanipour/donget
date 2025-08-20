@@ -42,12 +42,7 @@ class MenuItems extends StatelessWidget {
               children: [
                 _getMenuIcon(title),
                 const SizedBox(width: AppDimensions.spacingL),
-                Expanded(
-                  child: Text(
-                    title,
-                    style: AppTextStyles.bodyMedium,
-                  ),
-                ),
+                Expanded(child: Text(title, style: AppTextStyles.bodyMedium)),
                 if (_shouldShowArrow(title))
                   Image.asset(
                     AppIcons.arrowRight,
@@ -87,4 +82,4 @@ class MenuItems extends StatelessWidget {
   bool _shouldShowArrow(String title) {
     return title == 'Change Password' || title == 'Sign Out';
   }
-} 
+}

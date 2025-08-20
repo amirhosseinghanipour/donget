@@ -9,10 +9,7 @@ import '../models/user.dart';
 class InfoCards extends StatelessWidget {
   final User user;
 
-  const InfoCards({
-    super.key,
-    required this.user,
-  });
+  const InfoCards({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +90,10 @@ class InfoCards extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("UID (Referral Code)", style: AppTextStyles.uidLabel),
+                const Text(
+                  "UID (Referral Code)",
+                  style: AppTextStyles.uidLabel,
+                ),
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
@@ -139,10 +139,7 @@ class _InfoCard extends StatelessWidget {
   final Color backgroundColor;
   final Widget child;
 
-  const _InfoCard({
-    required this.backgroundColor,
-    required this.child,
-  });
+  const _InfoCard({required this.backgroundColor, required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -158,4 +155,4 @@ class _InfoCard extends StatelessWidget {
       child: child,
     );
   }
-} 
+}

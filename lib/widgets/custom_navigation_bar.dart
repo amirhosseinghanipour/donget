@@ -47,10 +47,17 @@ class CustomNavigationBar extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () => onNavItemTapped(index),
-          splashColor: isActive ? Colors.transparent : AppColors.overlayLight.withOpacity(0.2),
-          highlightColor: isActive ? Colors.transparent : AppColors.overlayLight.withOpacity(0.1),
+          splashColor: isActive
+              ? Colors.transparent
+              : AppColors.overlayLight.withOpacity(0.2),
+          highlightColor: isActive
+              ? Colors.transparent
+              : AppColors.overlayLight.withOpacity(0.1),
           child: Container(
-            padding: const EdgeInsets.symmetric(vertical: AppDimensions.spacingS, horizontal: AppDimensions.spacingS),
+            padding: const EdgeInsets.symmetric(
+              vertical: AppDimensions.spacingS,
+              horizontal: AppDimensions.spacingS,
+            ),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
@@ -64,7 +71,9 @@ class CustomNavigationBar extends StatelessWidget {
                 const SizedBox(height: AppDimensions.spacingXS),
                 Text(
                   label,
-                  style: isActive ? AppTextStyles.navLabelActive : AppTextStyles.navLabel,
+                  style: isActive
+                      ? AppTextStyles.navLabelActive
+                      : AppTextStyles.navLabel,
                 ),
               ],
             ),
@@ -80,10 +89,7 @@ class CustomNavigationBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(height: AppDimensions.addItemButtonTopSpacing),
-        const Text(
-          'Add Item',
-          style: AppTextStyles.caption,
-        ),
+        const Text('Add Item', style: AppTextStyles.caption),
       ],
     );
   }
@@ -110,16 +116,22 @@ class CustomNotchedShape extends NotchedShape {
 
     // left curve inward
     path.cubicTo(
-      center.dx - notchWidth * 0.6, host.top,
-      center.dx - notchWidth * 0.8, host.top - notchDepth,
-      center.dx, host.top - notchDepth,
+      center.dx - notchWidth * 0.6,
+      host.top,
+      center.dx - notchWidth * 0.8,
+      host.top - notchDepth,
+      center.dx,
+      host.top - notchDepth,
     );
 
     // right curve
     path.cubicTo(
-      center.dx + notchWidth * 0.8, host.top - notchDepth,
-      center.dx + notchWidth * 0.6, host.top,
-      center.dx + notchWidth * 1.5, host.top,
+      center.dx + notchWidth * 0.8,
+      host.top - notchDepth,
+      center.dx + notchWidth * 0.6,
+      host.top,
+      center.dx + notchWidth * 1.5,
+      host.top,
     );
 
     // rest of nav bar
@@ -130,4 +142,4 @@ class CustomNotchedShape extends NotchedShape {
     path.close();
     return path;
   }
-} 
+}

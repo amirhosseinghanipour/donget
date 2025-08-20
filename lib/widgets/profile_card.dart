@@ -8,19 +8,13 @@ import '../models/user.dart';
 class ProfileCard extends StatelessWidget {
   final User user;
 
-  const ProfileCard({
-    super.key,
-    required this.user,
-  });
+  const ProfileCard({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.topCenter,
-      children: [
-        _buildCardBackground(),
-        _buildAvatar(),
-      ],
+      children: [_buildCardBackground(), _buildAvatar()],
     );
   }
 
@@ -80,12 +74,7 @@ class ProfileCard extends StatelessWidget {
   Widget _buildAvatar() {
     return Positioned(
       top: 0,
-      child: Stack(
-        children: [
-          _buildAvatarContainer(),
-          _buildEditButton(),
-        ],
-      ),
+      child: Stack(children: [_buildAvatarContainer(), _buildEditButton()]),
     );
   }
 
@@ -132,4 +121,4 @@ class ProfileCard extends StatelessWidget {
       ),
     );
   }
-} 
+}
