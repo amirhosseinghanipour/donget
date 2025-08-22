@@ -39,7 +39,7 @@ class AppDimensions {
 
   // navigation bar
   static const double navBarHeight = 80.0;
-  static const double fabOffset = 12.0;
+  static const double fabOffset = 10.0;
   static const double fabSize = 40.0;
 
   // profile card
@@ -59,5 +59,5 @@ class AppDimensions {
   static const double gaugeChartLegendBorderWidth = 2.18;
 
   // navigation
-  static const double addItemButtonTopSpacing = 28.0;
+  static const double addItemButtonTopSpacing = 22.0;
 }

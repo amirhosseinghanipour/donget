@@ -37,49 +37,62 @@ class CustomNavigationBar extends StatelessWidget {
 
   Widget _buildNavItem(int index, String asset, String label) {
     final isActive = currentIndex == index;
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(AppDimensions.borderRadiusM),
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: () => onNavItemTapped(index),
-          splashColor: isActive
-              ? Colors.transparent
-              : AppColors.overlayLight.withValues(alpha: 0.2),
-          highlightColor: isActive
-              ? Colors.transparent
-              : AppColors.overlayLight.withValues(alpha: 0.1),
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        Positioned(
+          top: -5,
+          left: 0,
+          right: 0,
           child: Container(
-            padding: const EdgeInsets.symmetric(
-              vertical: AppDimensions.spacingS,
-              horizontal: AppDimensions.spacingS,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(AppDimensions.borderRadiusM),
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  asset,
-                  width: AppDimensions.iconSizeM,
-                  height: AppDimensions.iconSizeM,
-                  color: isActive ? AppColors.textPrimary : AppColors.textMuted,
+            clipBehavior: Clip.antiAlias,
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () => onNavItemTapped(index),
+                splashColor: isActive
+                    ? Colors.transparent
+                    : AppColors.overlayLight.withValues(alpha: 0.2),
+                highlightColor: isActive
+                    ? Colors.transparent
+                    : AppColors.overlayLight.withValues(alpha: 0.1),
+                child: Container(
+                  padding: const EdgeInsets.only(
+                    bottom: AppDimensions.spacingS,
+                    left: AppDimensions.spacingS,
+                    right: AppDimensions.spacingS,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        asset,
+                        width: AppDimensions.iconSizeM,
+                        height: AppDimensions.iconSizeM,
+                        color: isActive
+                            ? AppColors.textPrimary
+                            : AppColors.textMuted,
+                      ),
+                      const SizedBox(height: AppDimensions.spacingS),
+                      Text(
+                        label,
+                        style: isActive
+                            ? AppTextStyles.navLabelActive
+                            : AppTextStyles.navLabel,
+                      ),
+                    ],
+                  ),
                 ),
-                const SizedBox(height: AppDimensions.spacingXS),
-                Text(
-                  label,
-                  style: isActive
-                      ? AppTextStyles.navLabelActive
-                      : AppTextStyles.navLabel,
-                ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 
@@ -105,20 +118,20 @@ class CustomNotchedShape extends NotchedShape {
     }
 
     final fabRadius = guest.width / 4.0;
-    final notchWidth = fabRadius * 2;
-    final notchDepth = fabRadius;
+    final notchWidth = fabRadius * 2.4;
+    final notchDepth = fabRadius * 1.2;
     final center = guest.center;
 
     final path = Path()..moveTo(host.left, host.top);
 
     // left straight part before curve
-    path.lineTo(center.dx - notchWidth * 1.5, host.top);
+    path.lineTo(center.dx - notchWidth * 1.6, host.top);
 
     // left curve inward
     path.cubicTo(
-      center.dx - notchWidth * 0.6,
+      center.dx - notchWidth * 0.5,
       host.top,
-      center.dx - notchWidth * 0.8,
+      center.dx - notchWidth * 0.7,
       host.top - notchDepth,
       center.dx,
       host.top - notchDepth,
@@ -126,11 +139,11 @@ class CustomNotchedShape extends NotchedShape {
 
     // right curve
     path.cubicTo(
-      center.dx + notchWidth * 0.8,
+      center.dx + notchWidth * 0.7,
       host.top - notchDepth,
-      center.dx + notchWidth * 0.6,
+      center.dx + notchWidth * 0.5,
       host.top,
-      center.dx + notchWidth * 1.5,
+      center.dx + notchWidth * 1.6,
       host.top,
     );
 
