@@ -40,18 +40,18 @@ class AppTextStyles {
 
   static const TextStyle caption = TextStyle(
     fontSize: 12,
-    fontWeight: FontWeight.w400,
+    fontWeight: FontWeight.w700,
     color: AppColors.textMuted,
   );
 
   static const TextStyle navLabel = TextStyle(
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: FontWeight.w700,
     color: AppColors.textMuted,
   );
 
   static const TextStyle navLabelActive = TextStyle(
-    fontSize: 11,
+    fontSize: 12,
     fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );

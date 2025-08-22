@@ -45,8 +45,8 @@ class Header extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         borderRadius: BorderRadius.circular(AppDimensions.borderRadiusL),
-        splashColor: AppColors.overlayLight.withOpacity(0.3),
-        highlightColor: AppColors.overlayLight.withOpacity(0.2),
+        splashColor: AppColors.overlayLight.withValues(alpha: 0.3),
+        highlightColor: AppColors.overlayLight.withValues(alpha: 0.2),
         child: Padding(
           padding: const EdgeInsets.all(AppDimensions.spacingS),
           child: Image.asset(

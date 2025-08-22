@@ -103,8 +103,8 @@ class ProfileCard extends StatelessWidget {
         child: InkWell(
           onTap: () {},
           borderRadius: BorderRadius.circular(AppDimensions.borderRadiusXXL),
-          splashColor: AppColors.overlayLight.withOpacity(0.3),
-          highlightColor: AppColors.overlayLight.withOpacity(0.2),
+          splashColor: AppColors.overlayLight.withValues(alpha: 0.3),
+          highlightColor: AppColors.overlayLight.withValues(alpha: 0.2),
           child: Container(
             decoration: const BoxDecoration(
               color: AppColors.cardBackground,
