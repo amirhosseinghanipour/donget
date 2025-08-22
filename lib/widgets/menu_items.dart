@@ -29,8 +29,8 @@ class MenuItems extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () {},
-          splashColor: AppColors.overlayLight.withOpacity(0.2),
-          highlightColor: AppColors.overlayLight.withOpacity(0.1),
+          splashColor: AppColors.overlayLight.withValues(alpha: 0.2),
+          highlightColor: AppColors.overlayLight.withValues(alpha: 0.1),
           child: Container(
             padding: const EdgeInsets.only(
               left: AppDimensions.spacingM,

@@ -79,8 +79,8 @@ class InfoCards extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
           onTap: () => _copyUidToClipboard(context),
-          splashColor: Colors.white.withOpacity(0.2),
-          highlightColor: Colors.white.withOpacity(0.1),
+          splashColor: Colors.white.withValues(alpha: 0.2),
+          highlightColor: Colors.white.withValues(alpha: 0.1),
           child: Container(
             margin: const EdgeInsets.only(right: AppDimensions.spacingXL),
             padding: const EdgeInsets.symmetric(

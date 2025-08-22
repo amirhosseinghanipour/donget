@@ -49,10 +49,10 @@ class CustomNavigationBar extends StatelessWidget {
           onTap: () => onNavItemTapped(index),
           splashColor: isActive
               ? Colors.transparent
-              : AppColors.overlayLight.withOpacity(0.2),
+              : AppColors.overlayLight.withValues(alpha: 0.2),
           highlightColor: isActive
               ? Colors.transparent
-              : AppColors.overlayLight.withOpacity(0.1),
+              : AppColors.overlayLight.withValues(alpha: 0.1),
           child: Container(
             padding: const EdgeInsets.symmetric(
               vertical: AppDimensions.spacingS,

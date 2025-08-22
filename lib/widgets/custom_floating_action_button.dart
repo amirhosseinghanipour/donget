@@ -23,8 +23,8 @@ class CustomFloatingActionButton extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: onPressed,
-            splashColor: AppColors.overlaySuccess.withOpacity(0.3),
-            highlightColor: AppColors.overlaySuccess.withOpacity(0.2),
+            splashColor: AppColors.overlaySuccess.withValues(alpha: 0.3),
+            highlightColor: AppColors.overlaySuccess.withValues(alpha: 0.2),
             child: Container(
               width: AppDimensions.fabSize,
               height: AppDimensions.fabSize,
