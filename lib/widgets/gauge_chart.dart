@@ -4,15 +4,106 @@ import '../constants/app_colors.dart';
 import '../constants/app_dimensions.dart';
 import '../constants/app_text_styles.dart';
 
-class GaugeChart extends StatelessWidget {
+class GaugeChart extends StatefulWidget {
   final double defiPercentage;
   final double ethereumPercentage;
+  final bool shouldAnimate;
 
   const GaugeChart({
     super.key,
     required this.defiPercentage,
     required this.ethereumPercentage,
+    this.shouldAnimate = true,
   });
+
+  @override
+  State<GaugeChart> createState() => GaugeChartState();
+}
+
+class GaugeChartState extends State<GaugeChart> with TickerProviderStateMixin {
+  late AnimationController _defiController;
+  late AnimationController _ethereumController;
+  late Animation<double> _defiAnimation;
+  late Animation<double> _ethereumAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _defiController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _ethereumController = AnimationController(
+      duration: const Duration(milliseconds: 1500),
+      vsync: this,
+    );
+
+    _defiAnimation = Tween<double>(begin: 0.0, end: widget.defiPercentage)
+        .animate(
+          CurvedAnimation(parent: _defiController, curve: Curves.easeOutCubic),
+        );
+
+    _ethereumAnimation =
+        Tween<double>(begin: 0.0, end: widget.ethereumPercentage).animate(
+          CurvedAnimation(
+            parent: _ethereumController,
+            curve: Curves.easeOutCubic,
+          ),
+        );
+
+    _defiAnimation.addListener(() {
+      if (mounted) setState(() {});
+    });
+
+    _ethereumAnimation.addListener(() {
+      if (mounted) setState(() {});
+    });
+
+    if (widget.shouldAnimate) {
+      _startAnimation();
+    }
+  }
+
+  void _startAnimation() {
+    _defiController.reset();
+    _ethereumController.reset();
+
+    _defiController.forward();
+    Future.delayed(const Duration(milliseconds: 200), () {
+      if (mounted) {
+        _ethereumController.forward();
+      }
+    });
+  }
+
+  void restartAnimation() {
+    if (mounted) {
+      _startAnimation();
+    }
+  }
+
+  @override
+  void didUpdateWidget(GaugeChart oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.defiPercentage != widget.defiPercentage ||
+        oldWidget.ethereumPercentage != widget.ethereumPercentage) {
+      _startAnimation();
+    }
+
+    if (!oldWidget.shouldAnimate && widget.shouldAnimate) {
+      _startAnimation();
+    }
+  }
+
+  @override
+  void dispose() {
+    _defiController.dispose();
+    _ethereumController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +152,8 @@ class GaugeChart extends StatelessWidget {
       height: AppDimensions.chartHeight,
       child: CustomPaint(
         painter: GaugeChartPainter(
-          defiPercentage: defiPercentage,
-          ethereumPercentage: ethereumPercentage,
+          defiPercentage: _defiAnimation.value,
+          ethereumPercentage: _ethereumAnimation.value,
         ),
         size: const Size(AppDimensions.chartWidth, AppDimensions.chartHeight),
       ),
@@ -76,9 +167,13 @@ class GaugeChart extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildLegendItem(ethereumPercentage, "Ethereum", AppColors.ethereum),
+          _buildLegendItem(
+            _ethereumAnimation.value,
+            "Ethereum",
+            AppColors.ethereum,
+          ),
           const SizedBox(height: AppDimensions.gaugeChartLegendSpacing),
-          _buildLegendItem(defiPercentage, "DeFi", AppColors.defi),
+          _buildLegendItem(_defiAnimation.value, "DeFi", AppColors.defi),
         ],
       ),
     );
@@ -176,6 +271,11 @@ class GaugeChartPainter extends CustomPainter {
   ) {
     final gapRadians = (gapSize / radius) * 2;
     final totalPercentage = defiPercentage + ethereumPercentage;
+
+    if (totalPercentage <= 0) {
+      return;
+    }
+
     final availableRadians = math.pi - gapRadians;
 
     final defiRadians = (defiPercentage / totalPercentage) * availableRadians;
@@ -183,6 +283,7 @@ class GaugeChartPainter extends CustomPainter {
         (ethereumPercentage / totalPercentage) * availableRadians;
 
     _drawDefiArc(canvas, center, radius, defiRadians);
+
     _drawEthereumArc(
       canvas,
       center,
@@ -238,5 +339,11 @@ class GaugeChartPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    if (oldDelegate is GaugeChartPainter) {
+      return oldDelegate.defiPercentage != defiPercentage ||
+          oldDelegate.ethereumPercentage != ethereumPercentage;
+    }
+    return true;
+  }
 }
